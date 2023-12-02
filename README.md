@@ -1,192 +1,340 @@
-# Radtel RT-890 Custom Firmware
+#Radtel RT-890自定义固件
 
-This project is an effort to improve the firmware of the Radtel RT-890 in terms of features and radio performance.
 
-It is based on [DualTachyon's OEFW](https://github.com/DualTachyon/radtel-rt-890-oefw) which is reversed from the original Radtel 1.34 firmware.  
-Thanks to him for making this possible!
+该项目致力于在功能和无线电性能方面改进Radtel RT-890的固件。
 
-## Disclaimer
-This firmware is a work in progress and could be unstable; it could alter your radio and its data.  
-Use at your own risk and remember to back up your SPI memory before installing any custom firmware.
 
-## Features
-- All stock features: [check user's manual](https://cdn.shopifycdn.net/s/files/1/0564/8855/8800/files/RT-890_user_manual.pdf?v=1670288968)
-- RX frequency can be set from 10 to 1300 MHz (results may vary)
-- SSB reception
-- Light theme
-- AM Fix (improvement in AM reception with strong signals, port of @OneOfEleven's excellent work on the Quansheng UV-K5)
-- Full control over side key and main key shortcuts
-- New configurable actions (FM Radio, Scanner, FLashlight)
-- 0.01K step
-- Displaying registers in single VFO mode
-- Displaying dBM when receiving
-- Reworked scanner
-  - 8 Scan lists
-  - Faster scanning
-  - Resume mode: Time, Carrier, No
-  - Change scan direction while scanning (up/down keys)
-  - Force scan resume (up/down keys)
-- Reworked main menu
-- Ability to disable LED toggling when scanning
-- And much more!
+它是基于【DualTachyon的OEFW】(https://github.com/dualtachyon/radtel-rt-890-oefw)这与最初的Radtel 1.34固件相反。
 
-### Default Shortcut Keys (long press) - Configurable in main menu
-```
-1    => Start/stop scanning memory channels
-2    => Toggle AM fix
-3    => Toggle VOX
-4    => Change TX power on current channel
-5    => Change squelch level
-6    => Toggle dual watch
-7    => Toggle backlight
-8    => Change frequency step
-9    => Go to Preset Channel
-0    => Launch broadcast FM mode
-*    => Edit TX frequency on current channel
-#    => Toggle key lock
-Menu => DTMF decoder
-Exit => Single/dual VFO display
-```
+感谢他让这一切成为可能！
 
-### Scanning guide
-Scan list management:
-- This firmware has 8 scanlists.  
-- The current channel can be added to any scanlist using the `Ch In List X` menus.  
-- The scanlist to be used can be selected in the `List To Scan` menu.  
-- To ignore scanlists and scan all channels, select `*` in the `List To Scan` menu.  
-- To add/remove current channel to current scanlist, use the `Toggle SList` shortcut.
 
-Scanning:
-- To start scanning, press a key mapped to the `Freq scanner` shortcut (default: long press on key `1`).  
-- When scanning is in progress, use the `Freq scanner` key to change the scan list, this action will move to the next non-empty scanlist, or switch to scan all mode if all subsequent lists are empty.  
-- To change the direction of current scan, use the `up`/`down` keys.  
-- To force the scan to resume when the scanner stops on a signal, use the `up`/`down` keys.  
-- Press any key other than `Freq scanner` to stop scanning.  
+##免责声明
 
-### Spectrum Usage
-Start spectrum by mapping a key (side key or keypad) to the Spectrum action using the main menu.  Spectrum will launch, centered on the frequency from the active VFO/Memory Channel.
+此固件正在进行中，可能不稳定；它可能会改变你的收音机及其数据。
 
-Spectrum keys:
-```
-Up   => Normal: Increase frequency range by frequency +/- (number in middle of bottom row)
-        Holding on a frequency: Move up to the next frequency
-Down => Normal: Decrease frequency range by frequency +/- (number in middle of bottom row)
-        Holding on a frequency: Move down to the previous frequency
-1    => Change number of scan steps (16, 32, 64 or 128)
-2    => 
-3    => Change modulation (AM, FM or SSB)
-4    => Change step size (0.25k - 50k)
-5    => 
-6    => Inrease squelch level
-7    => Hold on current frequency
-8    => 
-9    => Decrease squelch level
-0    => Toggle filter (U = unfiltered, F = filtered)
-*    => Change scan delay (0 - 40ms)
-#    => Toggle bandwidth (W = wide, N = narrow)
-Menu => Jump to VFO mode with current frequency and settings (to allow TX)
-Exit => Exit spectrum
+自担风险使用，并记得在安装任何自定义固件之前备份SPI内存。
+
+
+##特点
+
+-所有库存功能：[查看用户手册](https://cdn.shopifycdn.net/s/files/1/0564/8855/8800/files/rt-890_user_manual.pdf?v=1670288968)
+
+-RX频率可以设置在10到1300 MHz之间（结果可能会有所不同）
+
+-SSB接收
+
+-灯光主题
+
+-AM Fix（通过强信号改善AM接收，是@OneOfEleven在全盛UV-K5上出色工作的端口）
+
+-完全控制侧键和主键快捷键
+
+-新的可配置操作（调频收音机、扫描仪、荧光灯）
+
+-0.01K步长
+
+-在单VFO模式下显示寄存器
+
+-接收时显示dBM
+
+-返工扫描仪
+
+-8扫描列表
+
+-更快的扫描
+
+-恢复模式：时间、载波、否
+
+-扫描时更改扫描方向（向上/向下键）
+
+-强制恢复扫描（向上/向下键）
+
+-返工的主菜单
+
+-扫描时禁用LED切换的能力
+
+-还有更多！
+
+
+###默认快捷键（长按）-可在主菜单中配置
+
 ```
 
-Spectrum display:
-<p float="left">
-<img src="/Images/SpectrumDisplay.png" height=300 />
+1=>开始/停止扫描内存通道
+
+2=>切换AM修复
+
+3=>切换VOX
+
+4=>更改当前信道上的TX电源
+
+5=>更改静噪级别
+
+6=>切换双表
+
+7=>切换背光
+
+8=>更改频率步长
+
+9=>转到预设频道
+
+0=>启动广播调频模式
+
+*=>编辑当前频道的发送频率
+
+#=>切换钥匙锁
+
+菜单=>DTMF解码器
+
+退出=>单/双VFO显示
+
+```
+
+
+###扫描向导
+
+扫描列表管理：
+
+-此固件有8个扫描列表。
+
+-可以使用“Ch In List X”菜单将当前频道添加到任何扫描列表中。
+
+-可以在“要扫描的列表”菜单中选择要使用的扫描列表。
+
+-要忽略扫描列表并扫描所有频道，请在“要扫描的列表”菜单中选择“*”。
+
+-要将当前频道添加/删除到当前扫描列表，请使用“切换SList”快捷方式。
+
+
+正在扫描：
+
+-要开始扫描，请按映射到“Freq scanner”快捷方式的键（默认设置：长按“1”键）。
+
+-当扫描正在进行时，使用“Freq scanner”键更改扫描列表，此操作将移动到下一个非空扫描列表，或者如果所有后续列表都为空，则切换到扫描所有模式。
+
+-要更改当前扫描的方向，请使用“向上”/“向下”键。
+
+-要在扫描仪收到信号停止时强制恢复扫描，请使用“向上”/“向下”键。
+
+-按除“Freq scanner”以外的任意键停止扫描。
+
+
+###频谱使用
+
+通过使用主菜单将一个键（侧键或小键盘）映射到spectrum（频谱）操作来启动频谱。频谱将启动，以活动VFO/内存通道的频率为中心。
+
+
+频谱密钥：
+
+```
+
+向上=>正常：将频率范围增加+/-（底部行中间的数字）
+
+保持一个频率：向上移动到下一个频率
+
+向下=>正常：将频率范围减小+/-（底部行中间的数字）
+
+保持一个频率：向下移动到上一个频率
+
+1=>更改扫描步数（16、32、64或128）
+
+2=>
+
+3=>更改调制（AM、FM或SSB）
+
+4=>更改步长（0.25k-50k）
+
+5=>
+
+6=>润滑油静噪级别
+
+7=>保持当前频率
+
+8=>
+
+9=>降低静噪级别
+
+0=>切换过滤器（U=未过滤，F=已过滤）
+
+*=>更改扫描延迟（0-40ms）
+
+#=>切换带宽（W=宽，N=窄）
+
+菜单=>使用当前频率和设置跳转到VFO模式（允许TX）
+
+退出=>退出频谱
+
+```
+
+
+频谱显示：
+
+<p float=“left”>
+
+<img src=“/Images/SpectrumDisplay.png”height=300/>
+
 </p>
 
-## Update Instructions
-### SPI memory backup
-Use [RT-890-Flasher](https://github.com/DualTachyon/radtel-rt-890-flasher)
 
-### SPI memory restore
-Use [RT-890-SPI-restore-CLI](https://github.com/DualTachyon/radtel-rt-890-spi-restore-cli)
+##更新说明
 
-### Customizations
+###SPI内存备份
+
+使用[RT-890-闪光灯](https://github.com/dualtachyon/radtel-rt-890-flasher)
+
+
+###SPI内存恢复
+
+使用[RT-890-SPI-restore-CLI](https://github.com/dualtachyon/radtel-rt-890-spi-restore-cli)
+
+
+###自定义
+
 ```
-UART_DEBUG          => UART debug output
-MOTO_STARTUP_TONE   => Moto XPS startup beeps
-ENABLE_AM_FIX       => Experimental port of the great UV-K5 AM fix from OneOfEleven
-ENABLE_LTO          => Link Time Optimization
-ENABLE_NOAA         => NOAA weather channels (always re-set the sidekeys actions from menu after modifying the available actions)
+
+UART_DEBUG=>UART调试输出
+
+MOTO_STARTUP_TONE=>MOTO XPS启动蜂鸣声
+
+ENABLE_AM_FIX=>OneOfEleven的大UV-K5 AM修复的实验端口
+
+ENABLE_LTO=>链路时间优化
+
+ENABLE_NOAA=>NOAA天气频道（修改可用操作后，始终从菜单重新设置侧键操作）
+
 ```
 
-### Build & Flash
-See __Compiler__, __Building__ and __Flashing__ sections below.
 
-## Pre-built firmware
-You can find pre-built firmwares in the [Actions](https://github.com/OEFW-community/RT-890-custom-firmware/actions)
+###构建和闪存
 
-## Building from browser
+请参阅下面的__Compiler__、__Building__和__Flashing__部分。
 
-To build the firmware without installing any software you can run a full featured IDE and compiler in your browser using GitHub Codespace.  
-The preconfigured environment runs Linux Ubuntu 22.04 with gcc-arm-none-eabi 15:10.3-2021.07-4.
 
-### Starting a new Codespace
+##预构建固件
 
-You just need to clic on the green button `<> Code` -> `Codespace` -> `Create Codespace on ...`  
-After the Codespace is initialized, you can open and edit any file, for example, modify the options in the makefile and build the firmware typing `make` in the terminal panel.
+您可以在[Actions]中找到预构建的固件(https://github.com/oefw-community/rt-890-custom-firmware/actions)
 
-### Starting an existing Codespace
 
-If you started a Codespace less than 7 days ago and have not manually deleted it, then you will be offered to restart it instead of creating a new one.  
-The start-up will be much faster but you will need to update the code before compiling as it will contain the version of the code from the time of its creation.  
-To do this, simply type the following commands in the console: `make clean`, then `git pull`, and finally `make`.
+##从浏览器构建
 
-### A word about the free offer
-The most observant users will have noticed this message: `Codespace usage for this repository is paid for by...`  
-Github will never charge you without consent. If you reach the limit of the free offer, which is very unlikely, you will not be able to start your codespaces until the monthly limits reset, that's all.  
-[More informations](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces)
 
-## Telegram group
-If you want to discuss this project, you can join the [Telegram group](https://t.me/RT890_OEFW).
+要在不安装任何软件的情况下构建固件，您可以使用GitHub代码空间在浏览器中运行功能齐全的IDE和编译器。
+
+预配置的环境运行Linux Ubuntu 22.04，带有gcc arm none eabi 15:10.3-2021.07-4。
+
+
+###启动新的代码空间
+
+
+您只需要点击绿色按钮`<>Code`->`Codespace`->`Create Codespace on…`
+
+代码空间初始化后，您可以打开和编辑任何文件，例如，修改makefile中的选项，并在终端面板中键入“make”来构建固件。
+
+
+###启动现有代码空间
+
+
+如果您在不到7天前启动了一个代码空间，并且没有手动删除它，那么您将可以重新启动它，而不是创建一个新的代码空间。
+
+启动速度会快得多，但在编译之前需要更新代码，因为它将包含创建时的代码版本。
+
+要做到这一点，只需在控制台中键入以下命令：“make clean”，然后是“git pull”，最后是“make”。
+
+
+###关于免费报价的一句话
+
+最善于观察的用户会注意到这条消息：“此存储库的代码空间使用由…支付。”
+
+未经同意，Github永远不会向您收费。如果你达到了免费提供的限制（这是非常不可能的），你将无法启动你的代码空间，直到每月的限制重置，仅此而已。
+
+[更多信息](https://docs.github.com/en/billing/managing-billing-for-github-codespaces/about-billing-for-github-codespaces)
+
+
+##Telegram组
+
+如果你想讨论这个项目，你可以加入[电报小组](https://t.me/rt890_oefw)。
+
 
 
 
 ---
-_Original OEFW readme_
 
-# Support
+_原始OEFW自述_
 
-* If you like my work, you can support me through https://ko-fi.com/DualTachyon
 
-# Open reimplementation of the Radtel RT-890 v1.34 firmware
+#支持
 
-This repository is a preservation project of the Radtel RT-890 v1.34 firmware.
-It is dedicated to understanding how the radio works and help developers making their own customisations/fixes/etc.
-It is by no means fully understood or has all variables/functions properly named, as this is best effort only.
-As a result, this repository will not include any customisations or improvements over the original firmware.
 
-# Compiler
+*如果你喜欢我的工作，你可以支持我度过难关https://ko-fi.com/dualtachyon
 
-arm-none-eabi GCC version 10.3.1 is recommended, which is the current version on Ubuntu 22.04.03 LTS.
-Other versions may generate a flash file that is too big.
-You can get an appropriate version from: https://developer.arm.com/downloads/-/gnu-rm
 
-# Building
+#打开Radtel RT-890 v1。34固件
 
-To build the firmware, you need to fetch the submodules and then run make:
+
+该存储库是Radtel RT-890 v1的一个保护项目。34固件。
+
+它致力于了解收音机的工作原理，并帮助开发人员进行自己的定制/修复等。
+
+它并没有被完全理解，也没有正确命名所有变量/函数，因为这只是尽最大努力。
+
+因此，此存储库将不包括对原始固件的任何定制或改进。
+
+
+#编译器
+
+
+建议使用arm-none eabi GCC 10.3.1版本，这是Ubuntu 22.04.03 LTS上的当前版本。
+
+其他版本可能会生成过大的闪存文件。
+
+您可以从以下位置获取适当的版本：https://developer.arm.com/downloads/-/gnu-rm
+
+
+#建筑物
+
+
+要构建固件，您需要获取子模块，然后运行make：
+
 ```
-git submodule update --init --recursive --depth=1
-make
+
+git子模块更新--init--recursive--depth=1
+
+制作
+
 ```
 
-# Flashing
 
-* Use the firmware.bin file with either [RT-890-Flasher](https://github.com/DualTachyon/radtel-rt-890-flasher) or [RT-890-Flasher-CLI](https://github.com/DualTachyon/radtel-rt-890-flasher-cli)
+#闪烁
 
-# License
 
-Copyright 2023 Dual Tachyon
-https://github.com/DualTachyon
+*使用固件。带有[RT-890-Flasher]的bin文件(https://github.com/dualtachyon/radtel-rt-890-flasher)或[RT-890 Flasher-CLI](https://github.com/dualtachyon/radtel-rt-890-flasher-cli)
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
+#许可证
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
 
+版权所有2023双速子
+
+https://github.com/dualtachyon
+
+
+根据Apache许可证2.0版许可（“许可证”）；
+
+除非符合许可证的规定，否则您不得使用此文件。
+
+您可以在获取许可证副本
+
+
+http://www.apache.org/licenses/license-2.0
+
+
+除非适用法律要求或书面同意，软件
+
+根据许可证进行的分发是在“按原样”的基础上进行的，
+
+无任何明示或暗示的保证或条件。
+
+有关管理权限的特定语言，请参阅许可证和
+
+许可证下的限制。
